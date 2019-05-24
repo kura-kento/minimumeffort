@@ -4,7 +4,7 @@
             <%# マスの配置 %>
             <% 17.times{|x| %>
             <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
-                    <button type="submit" class="<%="#{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]}"%>" name="" ><%="#{(x).modulo(4)+1}" unless x==16  %></button>
+                    <button type="submit" class="<%="#{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]}"%>"  ><%="#{(x).modulo(4)+1}" unless x==16  %></button>
               <%end%>
             <% } %>
 
