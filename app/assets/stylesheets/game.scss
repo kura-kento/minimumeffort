@@ -49,7 +49,7 @@
 }
 .purple{
   background-color: rgb(246, 12, 223);
-  -webkit-text-size-adjust: 100%;
+
 }
 
 .random_color{
@@ -60,7 +60,7 @@
   position: absolute;
   top:308px;
   left:308px;
-  -webkit-text-size-adjust: 100%;
+
 }
 
 .top_left{
@@ -68,11 +68,11 @@
   width:40px;
   border-left:5px solid black;
   border-top:5px solid black;
-  text-align: center;
+  // text-align: center;
   font-size: 25px;
   position: absolute;
   display:inline-block;
-  -webkit-text-size-adjust: 100%;
+  table-layout: fixed;
 }
 
 .top_right{
@@ -80,11 +80,11 @@
   width:40px;
   border-right:5px solid black;
   border-top:5px solid black;
-  text-align: center;
+  // text-align: center;
   font-size: 25px;
   position: absolute;
   display:inline-block;
-  -webkit-text-size-adjust: 100%;
+  table-layout: fixed;
 }
 
 .bottom_left{
@@ -92,11 +92,10 @@
   width:40px;
   border-left:5px solid black;
   border-bottom:5px solid black;
-  text-align: center;
+  // text-align: center;
   font-size: 25px;
   position: absolute;
   display:inline-block;
-  -webkit-text-size-adjust: 100%;
 }
 
 .bottom_right{
@@ -104,11 +103,11 @@
   width:40px;
   border-right:5px solid black;
   border-bottom:5px solid black;
-  text-align: center;
+  // text-align: center;
   font-size: 25px;
   position: absolute;
   display:inline-block;
-  -webkit-text-size-adjust: 100%;
+
 }
 .fin{
   background-color: yellow;
