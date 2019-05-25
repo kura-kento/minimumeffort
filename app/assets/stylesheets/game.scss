@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .line{
-  width:900px;
+  width:640px;
   overflow:hidden;
   position:relative;
 }
@@ -68,8 +68,6 @@
   width:40px;
   border-left:5px solid black;
   border-top:5px solid black;
-  // text-align: center;
-  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -80,8 +78,6 @@
   width:40px;
   border-right:5px solid black;
   border-top:5px solid black;
-  // text-align: center;
-  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -103,8 +99,6 @@
   width:40px;
   border-right:5px solid black;
   border-bottom:5px solid black;
-  // text-align: center;
-  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -112,9 +106,9 @@
 .fin{
   background-color: yellow;
   color: red;
-  font-size: 50px;
+  font-size: 40px;
   position: absolute;
-  left:40%;
+  left:50%;
   top:85%;
 }
 .button_{
@@ -122,6 +116,7 @@
   height:40px;
   float:left;
   margin:7px;
+
 }
 .button_up{
   margin-top:10px;
@@ -130,9 +125,20 @@
 .button_down{
   overflow:hidden;
 }
-@media only screen {
+
+@media only screen and (max-width: 1000px) and (min-width: 768px) {
   .fin{
-    left:300px;
-    top:660px;
+    -webkit-writing-mode: vertical-rl;
+     -ms-writing-mode: tb-rl;
+         writing-mode: vertical-rl;
+    left:680px;
+    top:350px;
   }
+  .button_items{
+   overflow:hidden;
+   position: absolute;
+   top:40px;
+   left:650px;
+  }
+
 }

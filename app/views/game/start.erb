@@ -34,32 +34,34 @@
         <% } %>
     </div>
 <% } %>
-<div class="button_up">
-    <%= form_tag("/random_color") do %>
-        <button type="submit" class="button_" >ゲーム開始</button>
-    <%end%>
+<div class="button_items">
 
-    <%= form_tag("/timer") do %>
-        <button type="submit" class="button_">タイマー</button>
-    <% end %>
+
+    <div class="button_up">
+        <%= form_tag("/random_color") do %>
+            <button type="submit" class="button_" >ゲーム開始</button>
+        <%end%>
+
+        <%= form_tag("/timer") do %>
+            <button type="submit" class="button_">タイマー</button>
+        <% end %>
+    </div>
+
+    <div class="button_down">
+        <%= form_tag("/random_square") do %>
+            <button type="submit" class="button_">駒シャッフル</button>
+        <%end%>
+
+        <%= form_tag("/random_panel") do %>
+            <button type="submit" class="button_">パネルシャッフル</button>
+        <%end%>
+    </div>
 </div>
-
-<div class="button_down">
-    <%= form_tag("/random_square") do %>
-        <button type="submit" class="button_">駒シャッフル</button>
-    <%end%>
-
-    <%= form_tag("/random_panel") do %>
-        <button type="submit" class="button_">パネルシャッフル</button>
-    <%end%>
-</div>
-
-
 <div class="random_color <%="#{@random_color.color}"%>" >
 <%= @random_color.number%>
 </div>
 
 
 <% if @timer.count == 0 %>
-<a class="fin">タイムアップ！！</a>
+<a class="fin">タイムアップ！</a>
 <%end%>
