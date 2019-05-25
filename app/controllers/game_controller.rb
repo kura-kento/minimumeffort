@@ -48,24 +48,15 @@ class GameController < ApplicationController
   end
 
   def start_processing
-      @random_color = Color.last
       @square = Square.last
-
-      @red_color,@blue_color,@yellow_color,@green_color =
-      ["r","b","y","g"].map{ |i|search_color(i)
-                            @color
-                          }
-
-      @place_1 = params[:place_1]
-      @random_panel = Panel.last
-      @random_panel_number = @random_panel.random_panel.scan(/[0-9]+/)
-  end
-
-  def excange
-      @square = Square.last
-      place_1 = params[:place_1].split("_").map(&:to_i)
-      place_2 = params[:place_2].split("_").map(&:to_i)
-      @square.line(place_1[0])[place_1[1]],@square.line(place_2[0])[place_2[1]] = @square.line(place_2[0])[place_2[1]],@square.line(place_1[0])[place_1[1]]
+      if @square.exchange == nil
+          @square.exchange = params[:place_1]
+      else
+          place_1 = @square.exchange.split("_").map(&:to_i)
+          place_2 = params[:place_1].split("_").map(&:to_i)
+          @square.line(place_1[0])[place_1[1]],@square.line(place_2[0])[place_2[1]] = @square.line(place_2[0])[place_2[1]],@square.line(place_1[0])[place_1[1]]
+          @square.exchange = nil
+      end
       @square.save
       redirect_to("/start")
   end

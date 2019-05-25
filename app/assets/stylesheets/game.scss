@@ -4,7 +4,7 @@
 .line{
   width:900px;
   overflow:hidden;
-  position: relative;
+  position:relative;
 }
 .square{
   background-color:rgb(224, 197, 157);
@@ -25,7 +25,6 @@
 .line2_16,.line5_1,.line11_1,.line11_16{
   border-bottom:5px solid black;
 }
-
 
 .robots {
   position: absolute;
@@ -49,8 +48,7 @@
 }
 .purple{
   background-color: rgb(246, 12, 223);
-  height:40px;
-  width:40px;
+
 }
 
 .random_color{
@@ -58,6 +56,7 @@
   width:40px;
   font-size: 25px;
   text-align: center;
+  line-height: 40px;
   position: absolute;
   top:308px;
   left:308px;
@@ -70,7 +69,7 @@
   border-left:5px solid black;
   border-top:5px solid black;
   // text-align: center;
-  font-size: 25px;
+  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -82,7 +81,7 @@
   border-right:5px solid black;
   border-top:5px solid black;
   // text-align: center;
-  font-size: 25px;
+  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -94,7 +93,7 @@
   border-left:5px solid black;
   border-bottom:5px solid black;
   // text-align: center;
-  font-size: 25px;
+  // font-size: 25px;
   position: absolute;
   display:inline-block;
 }
@@ -105,7 +104,7 @@
   border-right:5px solid black;
   border-bottom:5px solid black;
   // text-align: center;
-  font-size: 25px;
+  // font-size: 25px;
   position: absolute;
   display:inline-block;
 
@@ -118,7 +117,7 @@
   left:40%;
   top:85%;
 }
-.button{
+.button_{
   width:120px;
   height:40px;
   float:left;
@@ -130,4 +129,10 @@
 }
 .button_down{
   overflow:hidden;
+}
+@media only screen {
+  .fin{
+    left:300px;
+    top:660px;
+  }
 }
