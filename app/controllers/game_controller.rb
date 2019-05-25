@@ -37,7 +37,7 @@ class GameController < ApplicationController
   def start
       @random_color = Color.last
       @square = Square.last
-
+      
       @red_color,@blue_color,@yellow_color,@green_color =
       ["r","b","y","g"].map{ |i|search_color(i)
                             @color
