@@ -5,7 +5,11 @@
             <% 17.times{|x| %>
                 <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
                     <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
-                        <button type="submit" class="<%="#{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]}"%>"  ><font size="5"><%="#{(x).modulo(4)+1}" unless x==16  %></button>
+                        <button type="submit" class="<%="#{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]}"%>"  ><font size="5">
+                            <% unless x==16  %>
+                                <i class="<%= @random_color.symbol.split(",")[(x).modulo(4)]%> fa-lg"></i>
+                            <% end %>
+                        </button>
                     <% end %>
                 <%end%>
             <% } %>
@@ -38,7 +42,6 @@
 <% } %>
 <div class="button_items">
 
-
     <div class="button_up">
         <%= form_tag("/random_color") do %>
             <button type="submit" class="button_" >ゲーム開始</button>
@@ -60,7 +63,9 @@
     </div>
 </div>
 <div class="random_color <%="#{@random_color.color}"%>" >
-<%= @random_color.number%>
+<% unless @random_color.number == nil %>
+    <i class="<%= @random_color.symbol.split(",")[@random_color.number-1]%> fa-lg"></i>
+<%end%>
 </div>
 
 

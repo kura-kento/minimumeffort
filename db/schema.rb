@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_141701) do
+ActiveRecord::Schema.define(version: 2019_05_25_082653) do
 
   create_table "colors", force: :cascade do |t|
     t.text "color"
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "symbol"
   end
 
   create_table "panels", force: :cascade do |t|

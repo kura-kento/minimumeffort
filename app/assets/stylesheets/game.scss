@@ -1,6 +1,8 @@
 // Place all the styles related to the game controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
 .line{
   width:640px;
   overflow:hidden;
@@ -45,6 +47,7 @@
 }
 .green{
   background-color: green;
+
 }
 .purple{
   background-color: rgb(246, 12, 223);
@@ -60,7 +63,7 @@
   position: absolute;
   top:308px;
   left:308px;
-
+  padding: 2px 0 0px 0.5px;
 }
 
 .top_left{
@@ -69,7 +72,7 @@
   border-left:5px solid black;
   border-top:5px solid black;
   position: absolute;
-  display:inline-block;
+  padding: 2px 0 0px 0.5px;
 
 }
 
@@ -79,8 +82,7 @@
   border-right:5px solid black;
   border-top:5px solid black;
   position: absolute;
-  display:inline-block;
-
+  padding: 2px 0 0px 0.5px;
 }
 
 .bottom_left{
@@ -91,7 +93,7 @@
   // text-align: center;
   // font-size: 25px;
   position: absolute;
-  display:inline-block;
+  padding: 2px 0 0px 0.5px;
 }
 
 .bottom_right{
@@ -100,8 +102,7 @@
   border-right:5px solid black;
   border-bottom:5px solid black;
   position: absolute;
-  display:inline-block;
-
+  padding: 2px 0 0px 0.5px;
 }
 .fin{
   background-color: yellow;
@@ -125,6 +126,7 @@
 .button_down{
   overflow:hidden;
 }
+
 
 @media only screen and (max-width: 1000px) and (min-width: 768px) {
   .fin{
