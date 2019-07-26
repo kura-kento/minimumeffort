@@ -4,7 +4,7 @@
             <%# マスの配置 %>
             <% 17.times{|x| %>
                 <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
-                    <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+                    <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                         <button type="submit" class="<%="#{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]}"%>"  ><font size="5">
                             <% unless x==16  %>
                                 <i class="<%= @random_color.symbol.split(",")[(x).modulo(4)]%> fa-lg"></i>
@@ -17,24 +17,24 @@
 
             <%# 駒の配置 %>
             <% if i == @red_color[0] && n == @red_color[1]+1  %>
-                <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+                <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                     <button type="submit" class="robots red" name="" value=""></button>
                 <% end %>
             <% elsif i == @blue_color[0] && n == @blue_color[1]+1  %>
-                <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+                <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                     <button type="submit" class="robots blue" name="<%="#{i}_#{n}"%>" value=""></button>
                 <% end %>
             <% elsif i == @yellow_color[0] && n == @yellow_color[1]+1  %>
-                <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+                <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                     <button type="submit" class="robots yellow" name="<%="#{i}_#{n}"%>" value=""></button>
                 <% end %>
             <% elsif i == @green_color[0] && n == @green_color[1]+1  %>
-                <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+                <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                     <button type="submit" class="robots green" name="<%="#{i}_#{n}"%>" value=""></button>
                 <% end %>
             <%end%>
 
-            <%= form_tag("/#{i}_#{n-1}/start_processing") do %>
+            <%= form_tag("/#{i}-#{n-1}/start_processing") do %>
                     <button type="submit" class="<%="square line#{i}_#{n}"%>" name="" value=""></button>
             <% end %>
         <% } %>
@@ -46,10 +46,7 @@
         <%= form_tag("/random_color") do %>
             <button type="submit" class="button_" >ゲーム開始</button>
         <%end%>
-
-        <%= form_tag("/timer") do %>
-            <button type="submit" class="button_">タイマー</button>
-        <% end %>
+        
     </div>
 
     <div class="button_down">
@@ -69,6 +66,13 @@
 </div>
 
 
-<% if @timer.count == 0 %>
-<a class="fin">タイムアップ！</a>
-<%end%>
+
+<div class="container">
+  <div id="timer" class="timer"> 60.000 </div>
+  <div class="controls">
+    <div class="btn" id="start">start</div>
+    <div class="btn" id="stop">stop</div>
+    <div class="btn" id="reset">reset</div>
+    <%= javascript_include_tag "main.js" %>
+  </div>
+</div>
