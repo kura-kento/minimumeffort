@@ -9,7 +9,7 @@
   let startTime;
   let timeoutId;
   let elapsedTime = 0;
-  timer.classList.add('time');
+  timer.classList.add('timer');
   setButtonStateInitial();
 
 

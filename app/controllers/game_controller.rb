@@ -1,6 +1,7 @@
 class GameController < ApplicationController
 
 
+
   def top
       EXCHANGE[:first] = nil
   end
@@ -11,7 +12,7 @@ class GameController < ApplicationController
 
       @random_panel = Panel.last
       @random_panel_number = @random_panel.random_panel.scan(/[0-9]+/)
-      @timer = Timer.last
+      @EXCHANGE = EXCHANGE
   end
 
   def start_processing
@@ -58,9 +59,6 @@ class GameController < ApplicationController
           end
 
       @random_color.save
-      @timer = Timer.last
-      @timer.count = 60
-      @timer.save
       redirect_to("/start")
   end
 
@@ -124,11 +122,13 @@ class GameController < ApplicationController
       redirect_to("/start")
   end
 
-  def timer_60
-    @timer = Timer.last
-    @timer.count = 0
-    @timer.save
-    sleep(60)
-    redirect_to("/start")
+  def start_JS
+    @random_color = Color.last
+    @red_color,@blue_color,@yellow_color,@green_color = SQUARES.map{ |key,value| value.split('-').map(&:to_i) }
+
+    @random_panel = Panel.last
+    @random_panel_number = @random_panel.random_panel.scan(/[0-9]+/)
+    @EXCHANGE = EXCHANGE
   end
+
 end

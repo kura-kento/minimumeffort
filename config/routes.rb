@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   post "random_color" => "game#random_color"
   post "random_square" => "game#random_square"
   post "random_panel" => "game#random_panel"
-  post "timer" => "game#timer_60"
-
+  get "start_JS" => "game#start_JS"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

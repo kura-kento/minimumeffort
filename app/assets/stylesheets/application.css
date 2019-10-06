@@ -13,31 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+
+
  body{
    font-family: 'Courier New',monospace;
    font-size: 14px;
    background: #eee;
  }
- .container{
-   position:relative;
-   top:-250px;
-   left:660px;
-   margin: 10px;
-   width: 230px;
-   background:#fff;
-   padding:10px;
-   text-align:center;
- }
+
+
  #timer{
    height:120px;
    line-height:120px;
    font-size:40px;
    margin-bottom: 10px;
    transition: 0.8s;
- }
- .timer{
    background:#ddd;
  }
+
  .timeout{
    background: yellow;
    transform: rotate(360deg);
@@ -63,3 +57,13 @@
  .inactive{
    opacity:0.6;
  }
+
+
+
+.z-index{
+  position: relative;
+  z-index: 10;
+}
+.opacity{
+  opacity: 0.7;
+}
