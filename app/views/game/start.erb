@@ -1,68 +1,70 @@
+<div class="background_board">
+    <div class="">
+        <% 1.upto(16){ |i| %>
+            <div class="line">
+                <% 1.upto(16){ |n| %>
+                    <div class="panel">
 
-<div class="">
-    <% 1.upto(16){ |i| %>
-        <div class="line">
-            <% 1.upto(16){ |n| %>
-                <div class="panel">
-
-                    <% if 17.times.one?{|x| i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i }%>
-                        <% 17.times{ |x|%>
-                        <%# 17回（色の付いたパネルの座標分） %>
-                            <%# i =偶数（縦の座標）n=奇数（横） %>
-                            <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
-                                <div class="<%=" square  #{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]} "%>" ><font size="5">
-                                    <% if x<16 %>
-                                        <i class=" <%=" #{@color_symbol[x] }"%> fa-lg" ></i>
-                                    <%end%>
-                                </div>
-                            <% end %>
-                        <% } %>
-                    <%else%>
-                        <div class="<%="square line#{i}_#{n} "%>" ></div>
-                    <%end%>
-                    <div class="square_top" >
-                        <%# 駒の配置 %>
-                        <% if    i == @red_color[0]    && n == @red_color[1]+1  %>
-                            <div class="square-range robots red"    id="<%="choice_#{i}_#{n}"%>"></div>
-                        <% elsif i == @blue_color[0]   && n == @blue_color[1]+1  %>
-                            <div class="square-range robots blue"   id="<%="choice_#{i}_#{n}"%>"></div>
-                        <% elsif i == @yellow_color[0] && n == @yellow_color[1]+1  %>
-                            <div class="square-range robots yellow" id="<%="choice_#{i}_#{n}"%>"></div>
-                        <% elsif i == @green_color[0]  && n == @green_color[1]+1  %>
-                            <div class="square-range robots green"  id="<%="choice_#{i}_#{n}"%>"></div>
+                        <% if 17.times.one?{|x| i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i }%>
+                            <% 17.times{ |x|%>
+                            <%# 17回（色の付いたパネルの座標分） %>
+                                <%# i =偶数（縦の座標）n=奇数（横） %>
+                                <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
+                                    <div class="<%=" square  #{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]} "%>" ><font size="5">
+                                        <% if x<16 %>
+                                            <i class=" <%=" #{@color_symbol[x] }"%> fa-lg" ></i>
+                                        <%end%>
+                                    </div>
+                                <% end %>
+                            <% } %>
+                        <%else%>
+                            <div class="<%="square line#{i}_#{n} "%>" ></div>
                         <%end%>
-                        <div class="square-range" id="<%="choice_#{i}_#{n}"%>"></div>
+                        <div class="square_top" >
+                            <%# 駒の配置 %>
+                            <% if    i == @red_color[0]    && n == @red_color[1]+1  %>
+                                <div class="square-range robots red"    id="<%="choice_#{i}_#{n}"%>"></div>
+                            <% elsif i == @blue_color[0]   && n == @blue_color[1]+1  %>
+                                <div class="square-range robots blue"   id="<%="choice_#{i}_#{n}"%>"></div>
+                            <% elsif i == @yellow_color[0] && n == @yellow_color[1]+1  %>
+                                <div class="square-range robots yellow" id="<%="choice_#{i}_#{n}"%>"></div>
+                            <% elsif i == @green_color[0]  && n == @green_color[1]+1  %>
+                                <div class="square-range robots green"  id="<%="choice_#{i}_#{n}"%>"></div>
+                            <%end%>
+                            <div class="square-range" id="<%="choice_#{i}_#{n}"%>"></div>
+                        </div>
                     </div>
-                </div>
-            <% } %>
-        </div>
-    <% } %>
-    <div class="trouble" id="trouble" >手数  0</div>
-    <%= javascript_include_tag "con.js"%>
-</div>
-
-<div class="button-items">
-    <% buttons = [ ["/random_color","/random_square","/random_panel","/square_reset"],["ゲーム開始","駒シャッフル","パネルシャッフル","リセット"] ] %>
-    <%4.times{ |i|%>
-        <%= form_tag("#{buttons[0][i]}") do %>
-            <button type="submit" class="button--large" ><%="#{buttons[1][i]}"%></button>
-        <%end%>
-    <%}%>
-</div>
-
-<div class="random_color <%="#{@random_color.color}"%>" >
-    <% unless @random_color.number == nil %>
-        <i class="<%= "#{@SYMBOLS[@random_color.number-1]}"%> fa-lg"></i>
-    <%end%>
-</div>
-
-
-<div class="container--move">
-    <div id="timer" > 60.000 </div>
-    <div class="controls">
-        <div class="btn start-btn" id="start">start</div>
-        <div class="btn" id="stop">stop</div>
-        <div class="btn" id="reset">reset</div>
-        <%= javascript_include_tag "main.js" %>
+                <% } %>
+            </div>
+        <% } %>
+        <div class="trouble" id="trouble" >手数  0</div>
+        <%= javascript_include_tag "con.js"%>
     </div>
+
+    <div class="button-items">
+        <% buttons = [ ["/random_color","/random_square","/random_panel","/square_reset"],["ゲーム開始","駒シャッフル","パネルシャッフル","リセット"] ] %>
+        <%4.times{ |i|%>
+            <%= form_tag("#{buttons[0][i]}") do %>
+                <button type="submit" class="button--large" ><%="#{buttons[1][i]}"%></button>
+            <%end%>
+        <%}%>
+    </div>
+
+    <div class="random_color <%="#{@random_color.color}"%>" >
+        <% unless @random_color.number == nil %>
+            <i class="<%= "#{@SYMBOLS[@random_color.number-1]}"%> fa-lg"></i>
+        <%end%>
+    </div>
+
+
+    <div class="container--move">
+        <div id="timer" > 60.000 </div>
+        <div class="controls">
+            <div class="btn start-btn" id="start">start</div>
+            <div class="btn" id="stop">stop</div>
+            <div class="btn" id="reset">reset</div>
+            <%= javascript_include_tag "main.js" %>
+        </div>
+    </div>
+
 </div>

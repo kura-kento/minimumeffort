@@ -20,9 +20,12 @@
    font-family: 'Courier New',monospace;
    font-size: 14px;
    background: #eee;
-   height:640px;
- }
 
+ }
+.background_board{
+  position:fixed;
+
+}
 
  #timer{
    height:120px;
