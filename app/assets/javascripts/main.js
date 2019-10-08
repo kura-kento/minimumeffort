@@ -38,6 +38,7 @@
     }
 
     function setButtonStateInitial(){
+        start.classList.add('start-btn');
         start.classList.remove('inactive');
         stop.classList.add('inactive');
         reset.classList.add('inactive');
@@ -45,6 +46,7 @@
 
     function setButtonStateRunning(){
         start.classList.add('inactive');
+        start.classList.remove('start-btn');
         stop.classList.remove('inactive');
         reset.classList.add('inactive');
     }

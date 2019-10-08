@@ -38,7 +38,6 @@
    color:red;
 
  }
-
  .controls{
    display: flex;
    justify-content: space-around;
@@ -53,17 +52,33 @@
    user-select:none;
    font-size:20px;
  }
-
- .inactive{
-   opacity:0.6;
+ .start-btn{
+   width:230px;
+   height:180px;
+   line-height: 180px;
+   position: absolute;
+   z-index: 10;
+   top:10px;
+   background-color: rgb(213, 92, 92);
  }
 
-
-
-.z-index{
-  position: relative;
-  z-index: 10;
-}
 .opacity{
-  opacity: 0.7;
+  opacity: 0.4;
+}
+
+.red{
+  background-color: red;
+}
+.blue{
+  background-color: rgb(64, 116, 246);
+}
+.yellow{
+  background-color: yellow;
+}
+.green{
+  background-color: green;
+
+}
+.purple{
+  background-color: rgb(246, 12, 223);
 }

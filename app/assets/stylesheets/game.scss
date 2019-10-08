@@ -1,7 +1,10 @@
 // Place all the styles related to the game controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.square-range{
+  width: 40px;
+  height:40px;
+}
 .container--move{
   margin: 10px;
   width: 230px;
@@ -27,12 +30,11 @@
   float:left;
 }
 .robots {
-  position: absolute;
-  width:36px;
-  height:36px;
   border-radius:16px;
-  margin:  2px 2px;
-  z-index: 10;
+  margin:  4px 4px;
+  width:30px;
+  height:30px;
+  border: 0.5px solid #ddd;
 }
 
 .square{
@@ -43,7 +45,7 @@
   z-index: 3;
   border:0.5px solid rgb(183, 185, 205);
 }
-.square_bottom{
+.square_top{
   width:40px;
   height:40px;
   float: left;
@@ -62,30 +64,11 @@
   width:35px;
 }
 
-.line2_16,.line5_1,.line11_1,.line11_16{
+.line4_16,.line5_1,.line11_1,.line10_16{
   border-bottom:5px solid black;
   height:35px;
 }
 
-
-
-.red{
-  background-color: red;
-}
-.blue{
-  background-color: rgb(64, 116, 246);
-}
-.yellow{
-  background-color: yellow;
-}
-.green{
-  background-color: green;
-
-}
-.purple{
-  background-color: rgb(246, 12, 223);
-
-}
 
 .random_color{
   height:40px;
@@ -136,55 +119,14 @@
   text-align: center;
   line-height: 40px;
 }
-.block{
 
 
-  &__red{
-    background: red;
-    border-radius:18px;
-    margin:  2px 2px;
-    width:36px;
-    height:36px;
-  }
-  &__blue{
-    background-color: rgb(64, 116, 246);
-    border-radius:18px;
-    margin:  2px 2px;
-    width:36px;
-    height:36px;
-  }
-  &__yellow{
-    background-color: yellow;
-    border-radius:18px;
-    margin:  2px 2px;
-    width:36px;
-    height:36px;
-  }
-  &__green{
-    background-color: green;
-    border-radius:18px;
-    margin:  2px 2px;
-    width:36px;
-    height:36px;
-  }
+.button--large{
+  width:250px;
+  height:60px;
+  margin:0 0 30px 10px;
 }
-.button{
-  &__start{
-  width:250px;
-  height:60px;
-  margin:0 0 30px 10px;
-  }
-  &__square-shuffle{
-  width:250px;
-  height:60px;
-  margin:0 0 30px 10px;
-  }
-  &__pamel-shuffle{
-  width:250px;
-  height:60px;
-  margin:0 0 30px 10px;
-  }
-}
+
 @media only screen and (max-width: 1000px) and (min-width: 768px) {
   .fin{
     -webkit-writing-mode: vertical-rl;
@@ -199,5 +141,12 @@
    top:40px;
    left:650px;
   }
-
+  .trouble{
+    overflow:hidden;
+    position: absolute;
+    top:610px;
+    left:670px;
+    color: gray;
+    background-color: rgb(165, 241, 118);
+  }
 }

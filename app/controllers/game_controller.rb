@@ -3,38 +3,16 @@ class GameController < ApplicationController
 
 
   def top
-      EXCHANGE[:first] = nil
+
   end
 
   def start
       @random_color = Color.last
       @red_color,@blue_color,@yellow_color,@green_color = SQUARES.map{ |key,value| value.split('-').map(&:to_i) }
-
       @random_panel = Panel.last
       @random_panel_number = @random_panel.random_panel.scan(/[0-9]+/)
-      @EXCHANGE = EXCHANGE
-  end
-
-  def start_processing
-
-      if EXCHANGE[:first] == nil
-          SQUARES.each{|key,value|
-              EXCHANGE[:first] = params[:place_1]  if value == params[:place_1]
-          }
-      else
-          colors = []
-          SQUARES.each{|key,value|
-              colors << key  if  value == EXCHANGE[:first] || value == params[:place_1]
-          }
-          case colors.count
-          when 1
-            SQUARES[colors[0]] = params[:place_1]
-          when 2
-            SQUARES[colors[0]] , SQUARES[colors[1]] = SQUARES[colors[1]] , SQUARES[colors[0]]
-          end
-          EXCHANGE[:first] = nil
-      end
-      redirect_to("/start")
+      @SYMBOLS = SYMBOLS.map{ |key,value| value }
+      @color_symbol = Color.last.symbol.split(",")
   end
 
   def random_color
@@ -80,6 +58,7 @@ class GameController < ApplicationController
       panel = []
       2.times{ 1.upto(15).each{|i|   number_16  << i    unless  i==1 || i == 8 || i == 9  } }
       permutation = number_16.permutation(2).to_a.uniq
+      # リファクタリング予定
       permutation.delete([2,5])
       permutation.delete([2,6])
       permutation.delete([2,10])
@@ -92,10 +71,10 @@ class GameController < ApplicationController
       permutation.delete([6,2])
       permutation.delete([11,2])
       permutation.delete([12,2])
-      permutation.delete([2,15])
-      permutation.delete([3,15])
+      permutation.delete([4,15])
+      permutation.delete([5,15])
+      permutation.delete([10,15])
       permutation.delete([11,15])
-      permutation.delete([12,15])
       permutation.delete([7,7])
       permutation.delete([7,8])
       permutation.delete([7,9])
@@ -119,16 +98,21 @@ class GameController < ApplicationController
       }
       @random_panel.random_panel = panel
       @random_panel.save
+
+       #リファクタリング予定
+      symbols=[]
+      4.times{
+          SYMBOLS.values.shuffle.each{|i| symbols << i}
+      }
+      symbols = symbols.join(",")
+      color = Color.last
+      color.symbol = symbols
+      color.save
+
       redirect_to("/start")
   end
-
-  def start_JS
-    @random_color = Color.last
-    @red_color,@blue_color,@yellow_color,@green_color = SQUARES.map{ |key,value| value.split('-').map(&:to_i) }
-
-    @random_panel = Panel.last
-    @random_panel_number = @random_panel.random_panel.scan(/[0-9]+/)
-    @EXCHANGE = EXCHANGE
+  # そのままgame startに飛ばす
+  def square_reset
+    redirect_to("/start")
   end
-
 end
