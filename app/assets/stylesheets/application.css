@@ -86,3 +86,10 @@
 .purple{
   background-color: rgb(246, 12, 223);
 }
+.black{
+  background-color: black;
+}
+.next_position{
+  background-color: rgb(151, 251, 224);
+  opacity: 0.7;
+}

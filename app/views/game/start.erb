@@ -10,15 +10,21 @@
                             <%# 17回（色の付いたパネルの座標分） %>
                                 <%# i =偶数（縦の座標）n=奇数（横） %>
                                 <% if i == @random_panel_number[x*2].to_i && n == @random_panel_number[x*2+1].to_i %>
-                                    <div class="<%=" square  #{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]} "%>" ><font size="5">
+                                    <div class="<%=" square  #{@random_panel.wall.split(",")[(x).modulo(4)]} #{@random_panel.panel_color.split(",")[(x).div(4)]} "%>" id="<%="square_bottom_#{i}_#{n}"%>"><font size="5">
                                         <% if x<16 %>
                                             <i class=" <%=" #{@color_symbol[x] }"%> fa-lg" ></i>
                                         <%end%>
                                     </div>
                                 <% end %>
                             <% } %>
-                        <%else%>
-                            <div class="<%="square line#{i}_#{n} "%>" ></div>
+                          <%elsif (i==1 && n==5) || (i==1 && n==10) || (i==16 && n==5) || (i==16 && n==12)%>
+                              <div class="square right" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                          <%elsif (i==4 && n==16) || (i==5 && n==1) || (i==11 && n==1) || (i==10 && n==16)%>
+                              <div class="square bottom" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                          <%elsif (i==8 && n==8) || (i==8 && n==9) || (i==9 && n==8) || (i==9 && n==9)%>
+                              <div class="square top bottom right left black" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                          <%else%>
+                              <div class="<%="square  "%>" id="<%="square_bottom_#{i}_#{n}"%>"></div>
                         <%end%>
                         <div class="square_top" >
                             <%# 駒の配置 %>
@@ -38,6 +44,12 @@
             </div>
         <% } %>
         <div class="trouble" id="trouble" >手数  0</div>
+        <form href="#" id="color_panel">
+          <input type="hidden" name="color_panel" value="<%=@random_panel_number%>">
+          <input type="submit" name="" value="ボタン">
+        </form>
+        <%#  確認用完成時削除%>
+        <!-- <div id=choiceee></div> -->
         <%= javascript_include_tag "con.js"%>
     </div>
 

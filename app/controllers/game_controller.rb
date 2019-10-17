@@ -35,7 +35,6 @@ class GameController < ApplicationController
           if @random[0] == 4
             @random_color.number = nil
           end
-
       @random_color.save
       redirect_to("/start")
   end

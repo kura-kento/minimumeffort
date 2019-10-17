@@ -41,11 +41,12 @@
 
 .square{
   background-color:rgb(224, 197, 157);
-  width: 39px;
-  height:39px;
+  width: 40px;
+  height:40px;
   position: absolute;
   z-index: 3;
   border:0.5px solid rgb(183, 185, 205);
+  box-sizing: border-box;
 }
 .square_top{
   width:40px;
@@ -58,18 +59,9 @@
 .line8_8,.line8_9,.line9_8,.line9_9{
   background-color:black;
   border:1.5px solid black;
-  width:37px;
-  height:37px;
-}
-.line1_5,.line1_10,.line16_5,.line16_12{
-  border-right:5px solid black;
-  width:35px;
+
 }
 
-.line4_16,.line5_1,.line11_1,.line10_16{
-  border-bottom:5px solid black;
-  height:35px;
-}
 
 
 .random_color{
@@ -85,38 +77,26 @@
   z-index:100;
 }
 
-.top_left{
-  height:35px;
-  width:35px;
-  border-left:5px solid black;
+.top{
   border-top:5px solid black;
   line-height: 40px;
   text-align: center;
 }
 
-.top_right{
-  height:35px;
-  width:35px;
+.right{
   border-right:5px solid black;
-  border-top:5px solid black;
   line-height: 40px;
   text-align: center;
 }
 
-.bottom_left{
-  height:35px;
-  width:35px;
+.left{
   border-left:5px solid black;
-  border-bottom:5px solid black;
   text-align: center;
   line-height: 40px;
 
 }
 
-.bottom_right{
-  height:35px;
-  width:35px;
-  border-right:5px solid black;
+.bottom{
   border-bottom:5px solid black;
   text-align: center;
   line-height: 40px;
