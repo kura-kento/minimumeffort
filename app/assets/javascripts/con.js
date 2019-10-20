@@ -137,8 +137,6 @@
         }
     }
 
-    document.getElementById('resetbtn').addEventListener('click',function(){
-       window.location.reload(false);
-   });
+    
 
 }

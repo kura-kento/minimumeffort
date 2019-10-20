@@ -45,26 +45,7 @@
                     }
                 }
             }
-            else {
-              reset_false
-              next_p
-              chioce_AF
-              for(let h = 1; h <= 16; h++){
-                  for(let w = 1; w <= 16; w++){
 
-                      $(choices['choice_'+h+'_'+w]).removeClass();
-                      choices['choice_'+h+'_'+w].classList.add('square-range');
-
-                      default_position.forEach(function(position,i){
-                          if(position === 'choice_'+h+'_'+w){
-                              choices['choice_'+h+'_'+w].classList.add(default_color[i]);
-                              choices['choice_'+h+'_'+w].classList.add('robots');
-                          }
-                      });
-
-                  }
-              }
-            }
         });
 
 
