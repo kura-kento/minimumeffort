@@ -1,5 +1,6 @@
 'use strict';
 {
+
     //const choiceee = document.getElementById('choiceee');
     const choices  = {};
     const EXCHANGE = {active: false ,coordinate: false};
@@ -7,11 +8,15 @@
     const color_panel = document.getElementById('color_panel');
     const CHOICE = {top: false ,bottom: false, right: false ,left: false};
 
+    //リセットボタンを押せる状態(reset.jsで使用)
+    var reset_btn = true;
+    var reset_false = EXCHANGE['coordinate'] = false;
+
     const trouble = document.getElementById('trouble');
-    let count = 0;
+    var trouble_count = 0;
     function troubleText(){
-        count+=1
-        trouble.textContent = `手数 ${count}`;
+        trouble_count += 1
+        trouble.textContent = `手数 ${trouble_count}`;
     }
     //方角に応じて動けるマスにclass（next_position）を足す
     function nextPosition(){
@@ -27,94 +32,100 @@
       Object.keys(CHOICE).forEach(function(key){ CHOICE[key] = false; });
     }
 
-    for(let i = 1; i <= 16; i++){
-        for(let n = 1; n <= 16; n++){
-            choices['choice_'+i+'_'+n] = document.getElementById('choice_'+i+'_'+n);
+    var next_p = nextPosition();
+    var chioce_AF =choiceAllFalse();
 
-            choices['choice_'+i+'_'+n].addEventListener('click',()=>{
+    for(let h = 1; h <= 16; h++){
+        for(let w = 1; w <= 16; w++){
+            choices['choice_'+h+'_'+w] = document.getElementById('choice_'+h+'_'+w);
+
+            choices['choice_'+h+'_'+w].addEventListener('click',()=>{
                 //同じマスをクリックした時
-                if('choice_'+i+'_'+n === EXCHANGE['coordinate']){
+                if('choice_'+h+'_'+w === EXCHANGE['coordinate']){
                     choices[EXCHANGE['coordinate']].classList.remove('opacity');
                     EXCHANGE['coordinate'] = false;
+                    reset_btn = true;
                     nextPosition();
                     choiceAllFalse();
                 //赤マスがない場合（将来：コマがない）＋ ２手目の場合
-                }else if( choices['choice_'+i+'_'+n].classList.contains('next_position') === true){
+              }else if( choices['choice_'+h+'_'+w].classList.contains('next_position') === true){
                     nextPosition();
                     choiceAllFalse();
-                    choices['choice_'+i+'_'+n].classList.add('robots',EXCHANGE['color']);
+                    choices['choice_'+h+'_'+w].classList.add('robots',EXCHANGE['color']);
                     choices[EXCHANGE['coordinate']].classList.remove('opacity','robots',EXCHANGE['color']);
                     EXCHANGE['coordinate'] = false;
                     //手数表示
+                    reset_btn = true;
                     troubleText();
                     //コマがある場合 ＋ １手目の場合
-                }else if(choices['choice_'+i+'_'+n].classList.contains('robots') === true && EXCHANGE['coordinate'] === false){
-                    choices['choice_'+i+'_'+n].classList.add('opacity');
-                    EXCHANGE['coordinate'] = 'choice_'+i+'_'+n
+                }else if(choices['choice_'+h+'_'+w].classList.contains('robots') === true && EXCHANGE['coordinate'] === false){
+                    reset_btn = false;
+                    choices['choice_'+h+'_'+w].classList.add('opacity');
+                    EXCHANGE['coordinate'] = 'choice_'+h+'_'+w
                     //クリックした色を確認してその色を取得する。
                     piececolors.forEach(function(color){
-                        if(choices['choice_'+i+'_'+n].classList.contains(color)){
+                        if(choices['choice_'+h+'_'+w].classList.contains(color)){
                             EXCHANGE['color'] = color;
                         }
                     });
 
                     //上
-                    for(let j=i-1; j>=1;j--){
-                      if(i===1 || document.getElementById('square_bottom_'+i+'_'+n).classList.contains('top') === true ){
+                    for(let i=h-1; i>=1;i--){
+                      if(h===1 || document.getElementById('square_bottom_'+h+'_'+w).classList.contains('top') === true ){
                         break
-                      }else if(document.getElementById('square_bottom_'+j+'_'+n).classList.contains('bottom') === true ||
-                               document.getElementById('choice_'+j+'_'+n).classList.contains('robots') === true){
-                          if(j===(i-1)){break}
-                          CHOICE.top = (j+1)+'_'+n;
+                      }else if(document.getElementById('square_bottom_'+i+'_'+w).classList.contains('bottom') === true ||
+                               document.getElementById('choice_'+i+'_'+w).classList.contains('robots') === true){
+                          if(i===(h-1)){break}
+                          CHOICE.top = (i+1)+'_'+w;
                           break
-                      }else if(document.getElementById('square_bottom_'+j+'_'+n).classList.contains('top') === true ||
-                              j===1 || ( (n===8||n===9) && j===10 )){
-                          CHOICE.top = j+'_'+n;
+                      }else if(document.getElementById('square_bottom_'+i+'_'+w).classList.contains('top') === true ||
+                              i===1 || ( (w===8||w===9) && i===10 )){
+                          CHOICE.top = i+'_'+w;
                           break
                       }
                     }
                     //下
-                    for(let j=i+1; j<=16;j++){
-                      if(i===16 || document.getElementById('square_bottom_'+i+'_'+n).classList.contains('bottom') === true){
+                    for(let i=h+1; i<=16;i++){
+                      if(h===16 || document.getElementById('square_bottom_'+h+'_'+w).classList.contains('bottom') === true){
                         break
-                      }else if(document.getElementById('square_bottom_'+j+'_'+n).classList.contains('top') === true ||
-                               document.getElementById('choice_'+j+'_'+n).classList.contains('robots') === true){
-                          if(j===(i+1)){break}
-                          CHOICE.bottom = (j-1)+'_'+n;
+                      }else if(document.getElementById('square_bottom_'+i+'_'+w).classList.contains('top') === true ||
+                               document.getElementById('choice_'+i+'_'+w).classList.contains('robots') === true){
+                          if(i===(h+1)){break}
+                          CHOICE.bottom = (i-1)+'_'+w;
                           break
-                      }else if(document.getElementById('square_bottom_'+j+'_'+n).classList.contains('bottom') === true ||
-                               j===16 || ( (n===8||n===9) && j===7 )){
-                          CHOICE.bottom = j+'_'+n;
+                      }else if(document.getElementById('square_bottom_'+i+'_'+w).classList.contains('bottom') === true ||
+                               i===16 || ( (w===8||w===9) && i===7 )){
+                          CHOICE.bottom = i+'_'+w;
                           break
                         }
                     }
                     //左
-                    for(let j=n-1; j>=1;j--){
-                      if(n===1 || document.getElementById('square_bottom_'+i+'_'+n).classList.contains('left') === true){
+                    for(let i=w-1; i>=1;i--){
+                      if(w===1 || document.getElementById('square_bottom_'+h+'_'+w).classList.contains('left') === true){
                           break
-                      }else if(document.getElementById('square_bottom_'+i+'_'+j).classList.contains('right') === true ||
-                               document.getElementById('choice_'+i+'_'+j).classList.contains('robots') === true){
-                          if(j===(n-1)){break}
-                          CHOICE.left = i+'_'+(j+1);
+                      }else if(document.getElementById('square_bottom_'+h+'_'+i).classList.contains('right') === true ||
+                               document.getElementById('choice_'+h+'_'+i).classList.contains('robots') === true){
+                          if(i===(w-1)){break}
+                          CHOICE.left = h+'_'+(i+1);
                           break
-                      }else if(document.getElementById('square_bottom_'+i+'_'+j).classList.contains('left') === true ||
-                               j===1 || ( (i===8||i===9) && j===10 )){
-                          CHOICE.left = i+'_'+j;
+                      }else if(document.getElementById('square_bottom_'+h+'_'+i).classList.contains('left') === true ||
+                               i===1 || ( (h===8||h===9) && i===10 )){
+                          CHOICE.left = h+'_'+i;
                           break
                       }
                     }
                     //右
-                    for(let j=n+1; j<=16;j++){
-                      if(n===16 || document.getElementById('square_bottom_'+i+'_'+n).classList.contains('right') === true){
+                    for(let i=w+1; i<=16;i++){
+                      if(w===16 || document.getElementById('square_bottom_'+h+'_'+w).classList.contains('right') === true){
                           break
-                      }else if(document.getElementById('square_bottom_'+i+'_'+j).classList.contains('left') === true ||
-                               document.getElementById('choice_'+i+'_'+j).classList.contains('robots') === true){
-                          if(j===(n+1)){break}
-                          CHOICE.right = i+'_'+(j-1);
+                      }else if(document.getElementById('square_bottom_'+h+'_'+i).classList.contains('left') === true ||
+                               document.getElementById('choice_'+h+'_'+i).classList.contains('robots') === true){
+                          if(i===(w+1)){break}
+                          CHOICE.right = h+'_'+(i-1);
                           break
-        z              }else if(document.getElementById('square_bottom_'+i+'_'+j).classList.contains('right') === true ||
-                               j===16 || ( (i===8||i===9) && j===7 )){
-                          CHOICE.right = i+'_'+j;
+                      }else if(document.getElementById('square_bottom_'+h+'_'+i).classList.contains('right') === true ||
+                               i===16 || ( (h===8||h===9) && i===7 )){
+                          CHOICE.right = h+'_'+i;
                           break
                       }
                     }
@@ -126,5 +137,8 @@
         }
     }
 
+    document.getElementById('resetbtn').addEventListener('click',function(){
+       window.location.reload(false);
+   });
 
 }

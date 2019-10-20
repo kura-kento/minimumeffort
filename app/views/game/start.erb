@@ -17,14 +17,14 @@
                                     </div>
                                 <% end %>
                             <% } %>
-                          <%elsif (i==1 && n==5) || (i==1 && n==10) || (i==16 && n==5) || (i==16 && n==12)%>
-                              <div class="square right" id="<%="square_bottom_#{i}_#{n}"%>"></div>
-                          <%elsif (i==4 && n==16) || (i==5 && n==1) || (i==11 && n==1) || (i==10 && n==16)%>
-                              <div class="square bottom" id="<%="square_bottom_#{i}_#{n}"%>"></div>
-                          <%elsif (i==8 && n==8) || (i==8 && n==9) || (i==9 && n==8) || (i==9 && n==9)%>
-                              <div class="square top bottom right left black" id="<%="square_bottom_#{i}_#{n}"%>"></div>
-                          <%else%>
-                              <div class="<%="square  "%>" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                        <%elsif (i==1 && n==5) || (i==1 && n==10) || (i==16 && n==5) || (i==16 && n==12)%>
+                            <div class="square right" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                        <%elsif (i==4 && n==16) || (i==5 && n==1) || (i==11 && n==1) || (i==10 && n==16)%>
+                            <div class="square bottom" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                        <%elsif (i==8 && n==8) || (i==8 && n==9) || (i==9 && n==8) || (i==9 && n==9)%>
+                            <div class="square top bottom right left black" id="<%="square_bottom_#{i}_#{n}"%>"></div>
+                        <%else%>
+                            <div class="<%="square  "%>" id="<%="square_bottom_#{i}_#{n}"%>"></div>
                         <%end%>
                         <div class="square_top" >
                             <%# 駒の配置 %>
@@ -44,15 +44,24 @@
             </div>
         <% } %>
         <div class="trouble" id="trouble" >手数  0</div>
-        
+        <form href="#" id="color_panel">
+          <input type="hidden" name="color_panel" value="<%=@random_panel_number%>">
+          <input type="submit" name="" value="ボタン">
+        </form>
         <%#  確認用完成時削除%>
         <!-- <div id=choiceee></div> -->
+        <div class="reset_btn">
+            <button type="submit" class="button--large" id="resetbtn">リセット（速）</button>
+        </div>
+
         <%= javascript_include_tag "con.js"%>
+        
+
     </div>
 
     <div class="button-items">
-        <% buttons = [ ["/random_color","/random_square","/random_panel","/square_reset"],["ゲーム開始","駒シャッフル","パネルシャッフル","リセット"] ] %>
-        <%4.times{ |i|%>
+        <% buttons = [ ["/random_color","/random_square","/square_reset"],["ゲーム開始","シャッフル","リセット"] ] %>
+        <%3.times{ |i|%>
             <%= form_tag("#{buttons[0][i]}") do %>
                 <button type="submit" class="button--large" ><%="#{buttons[1][i]}"%></button>
             <%end%>
@@ -64,7 +73,6 @@
             <i class="<%= "#{@SYMBOLS[@random_color.number-1]}"%> fa-lg"></i>
         <%end%>
     </div>
-
 
     <div class="container--move">
         <div id="timer" > 60.000 </div>

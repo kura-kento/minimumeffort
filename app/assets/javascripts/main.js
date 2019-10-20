@@ -5,6 +5,7 @@
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
   const reset = document.getElementById('reset');
+  
 
   let startTime;
   let timeoutId;

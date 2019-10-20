@@ -40,18 +40,20 @@ class GameController < ApplicationController
   end
 
   def random_square
-      @square = Square.last
-      number_16 = []
-      1.upto(16).each{|i|   number_16  << i    unless  i == 8 || i == 9  }
+      number_16 = Array.new(16){|i| i+1 }
       random_numbers = 2.times.map{number_16.sample(4)}
+      loop{
+          unless 4.times.any?{|i|  ( random_numbers[0][i]==8 || random_numbers[0][i]==9 ) && ( random_numbers[1][i]==8 || random_numbers[1][i]==9 )   }== true
+              break
+          end
+          random_numbers = 2.times.map{number_16.sample(4)}
+      }
+
+      #SQUARES = {red: '5-4' ,blue: '3-13' , yello: '13-15' ,green: '7-3'  }
       SQUARES.each_with_index{|key_value,i|
           SQUARES[key_value[0]] = "#{random_numbers[0][i]}-#{random_numbers[1][i]-1}"
       }
-      redirect_to("/start")
 
-  end
-
-  def random_panel
       @random_panel = Panel.last
       number_16 = []
       panel = []
@@ -99,6 +101,8 @@ class GameController < ApplicationController
       @random_panel.save
 
        #リファクタリング予定
+      #SYMBOLS = {first: 'fab fa-jira',second: 'fab fa-chrome',thord: 'fab fa-empire',fouth: 'fab fa-centos' }
+
       symbols=[]
       4.times{
           SYMBOLS.values.shuffle.each{|i| symbols << i}
@@ -109,6 +113,11 @@ class GameController < ApplicationController
       color.save
 
       redirect_to("/start")
+
+  end
+
+  def random_panel
+
   end
   # そのままgame startに飛ばす
   def square_reset
