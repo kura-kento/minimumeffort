@@ -10,7 +10,7 @@
 
     //リセットボタンを押せる状態(reset.jsで使用)
     var reset_btn = true;
-    var reset_false = EXCHANGE['coordinate'] = false;
+
 
     const trouble = document.getElementById('trouble');
     var trouble_count = 0;
@@ -32,8 +32,14 @@
       Object.keys(CHOICE).forEach(function(key){ CHOICE[key] = false; });
     }
 
-    var next_p = nextPosition();
-    var chioce_AF =choiceAllFalse();
+    var reset_false = resetFalse();
+
+    function resetFalse(){
+      EXCHANGE['coordinate'] = false;
+      nextPosition();
+      choiceAllFalse();
+    }
+
 
     for(let h = 1; h <= 16; h++){
         for(let w = 1; w <= 16; w++){
@@ -137,6 +143,6 @@
         }
     }
 
-    
+
 
 }

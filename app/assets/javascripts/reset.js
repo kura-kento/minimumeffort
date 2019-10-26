@@ -26,6 +26,7 @@
         document.getElementById('resetbtn').addEventListener('click',function(){
             if(reset_btn === true){
               //con.jsの定数を使用
+
                 trouble_count = 0;
                 trouble.textContent = `手数 ${trouble_count}`;
               //
@@ -44,10 +45,11 @@
 
                     }
                 }
+                
             }
 
         });
 
 
-    //ocument.getElementById('resetbtn').textContent =reset_btn;
+    //document.getElementById('resetbtn').textContent =reset_btn;
 }

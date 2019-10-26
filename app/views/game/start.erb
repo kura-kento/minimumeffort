@@ -44,14 +44,17 @@
             </div>
         <% } %>
         <div class="trouble" id="trouble" >手数  0</div>
-        <form href="#" id="color_panel">
-          <input type="hidden" name="color_panel" value="<%=@random_panel_number%>">
-          <input type="submit" name="" value="ボタン">
-        </form>
+
         <%#  確認用完成時削除%>
         <!-- <div id=choiceee></div> -->
-        <div class="reset_btn">
-            <button type="submit" class="button--large" id="resetbtn">リセット（速）</button>
+        <div class="button-items">
+            <% buttons = [ ["/random_color","/random_square"],["ゲーム開始","シャッフル"] ] %>
+            <%2.times{ |i|%>
+                <%= form_tag("#{buttons[0][i]}") do %>
+                    <button type="submit" class="button--large" ><%="#{buttons[1][i]}"%></button>
+                <%end%>
+            <%}%>
+            <button type="submit" class="button--large" id="resetbtn">リセット</button>
         </div>
 
         <%= javascript_include_tag "con.js"%>
@@ -59,14 +62,7 @@
 
     </div>
 
-    <div class="button-items">
-        <% buttons = [ ["/random_color","/random_square","/square_reset"],["ゲーム開始","シャッフル","リセット"] ] %>
-        <%3.times{ |i|%>
-            <%= form_tag("#{buttons[0][i]}") do %>
-                <button type="submit" class="button--large" ><%="#{buttons[1][i]}"%></button>
-            <%end%>
-        <%}%>
-    </div>
+
 
     <div class="random_color <%="#{@random_color.color}"%>" >
         <% unless @random_color.number == nil %>
